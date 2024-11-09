@@ -1,3 +1,4 @@
+import Counter from './components/Counter';
 import UserProfile from './components/UserProfile';
 import Header from './components/Header';
 import MainContent from './components/MainContent';
@@ -44,6 +45,9 @@ function App() {
             <MainContent />
             <Footer />
         </div>
+        <div>
+        <Counter />
+      </div>
     </>
   )
 }
