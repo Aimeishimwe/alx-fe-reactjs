@@ -1,8 +1,9 @@
-import React, { useContext } from 'react';
+// src/UserDetails.jsx
+import React, { useContext } from 'react'; // Import useContext hook
 import UserContext from './UserContext';  // Import the UserContext
 
 function UserDetails() {
-  // Use the useContext hook to get userData from UserContext
+  // Access userData using the useContext hook
   const userData = useContext(UserContext);
 
   return (
