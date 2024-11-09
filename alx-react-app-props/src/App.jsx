@@ -1,3 +1,6 @@
+import React from 'react';
+import ProfilePage from './ProfilePage';  // Import the ProfilePage component
+import UserContext from './UserContext';  // Import the UserContext file
 import UserProfile from './components/UserProfile';
 import Header from './components/Header';
 import MainContent from './components/MainContent';
@@ -44,6 +47,9 @@ function App() {
             <MainContent />
             <Footer />
         </div>
+        <UserContext.Provider value={userData}>
+      <ProfilePage />  {/* ProfilePage and its children can now access userData */}
+    </UserContext.Provider>
     </>
   )
 }
