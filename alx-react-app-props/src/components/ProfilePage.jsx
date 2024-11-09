@@ -1,9 +1,12 @@
 // src/ProfilePage.jsx
 import React from 'react';
-import UserInfo from './UserInfo';  // Import UserInfo component
-
+import UserProfile from './UserProfile';  
 function ProfilePage() {
-  return <UserInfo />;  // Just render UserInfo without passing userData as a prop
+  return (
+    <div>
+      <UserProfile />  
+    </div>
+  );
 }
 
 export default ProfilePage;
