@@ -1,15 +1,22 @@
-import React from 'react';
-import RecipeList from './components/RecipeList'; // Ensure RecipeList exists and matches this path
-import AddRecipeForm from './components/AddRecipeForm'; // Ensure AddRecipeForm exists and matches this path
+import { Route, Routes } from 'react-router-dom'; // No need to import BrowserRouter here
+import RecipeList from './components/RecipeList';
+import AddRecipeForm from './components/AddRecipeForm';
+import RecipeDetails from './components/RecipeDetails';
+import EditRecipeForm from './components/EditRecipeForm';
 
-const App = () => {
+function App() {
   return (
     <div>
       <h1>Recipe Sharing Application</h1>
       <AddRecipeForm />
       <RecipeList />
+      <Routes>
+        <Route path="/" element={<RecipeList />} />
+        <Route path="/recipe/:id" element={<RecipeDetails />} />
+        <Route path="/edit/:id" element={<EditRecipeForm />} />
+      </Routes>
     </div>
   );
-};
+}
 
 export default App;
