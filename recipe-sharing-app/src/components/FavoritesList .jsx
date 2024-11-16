@@ -1,19 +1,29 @@
-import useRecipeStore from './recipeStore';
+import React from 'react';
+import useRecipeStore from '../recipeStore';
 
+/**
+ * FavoritesList component displays the list of user's favorite recipes.
+ * It retrieves the favorite recipes from the Zustand store and displays them.
+ */
 const FavoritesList = () => {
+  // Retrieve favorite recipes from the Zustand store using the favorite recipe IDs
   const favorites = useRecipeStore(state => state.favorites.map(id =>
-    state.recipes.find(recipe => recipe.id === id)
+    state.recipes.find(recipe => recipe.id === id)  // Find recipe details by ID
   ));
 
   return (
-    <div style={{ padding: '10px', border: '1px solid #ddd', borderRadius: '5px' }}>
-      <h2 style={{ fontSize: '1.5rem', marginBottom: '10px' }}>My Favorites</h2>
-      {favorites.map(recipe => (
-        <div key={recipe.id} style={{ marginBottom: '15px' }}>
-          <h3 style={{ fontSize: '1.25rem', color: '#333' }}>{recipe.title}</h3>
-          <p style={{ fontSize: '1rem', color: '#555' }}>{recipe.description}</p>
-        </div>
-      ))}
+    <div style={{ marginTop: '20px' }}>
+      <h2>My Favorites</h2>
+      {favorites.length > 0 ? (
+        favorites.map(recipe => (
+          <div key={recipe.id}>
+            <h3>{recipe.title}</h3>
+            <p>{recipe.description}</p>
+          </div>
+        ))
+      ) : (
+        <p>No favorite recipes found</p> 
+      )}
     </div>
   );
 };
