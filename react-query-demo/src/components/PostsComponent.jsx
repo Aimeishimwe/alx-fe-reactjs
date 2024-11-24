@@ -12,12 +12,22 @@ const fetchPosts = async () => {
 };
 
 function PostsComponent() {
-  const { data, error, isLoading, isError, isFetching, refetch } = useQuery(
+  const {
+    data,
+    error,
+    isLoading,
+    isError,
+    isFetching,
+    refetch,
+    isPreviousData, // To check if we're showing previous data
+  } = useQuery(
     "posts", // Query key for caching
     fetchPosts, // Fetching function
     {
       cacheTime: 60000, // Cache data for 60 seconds
       staleTime: 5000, // Keep data fresh for 5 seconds
+      refetchOnWindowFocus: true, // Refetch when window regains focus
+      keepPreviousData: true, // Keep previous data when refetching
     }
   );
 
@@ -43,6 +53,7 @@ function PostsComponent() {
           </li>
         ))}
       </ul>
+      {isPreviousData ? <p>Showing previous data...</p> : null}
     </div>
   );
 }
