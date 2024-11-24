@@ -1,58 +1,81 @@
 import React, { useState } from "react";
 
 function RegistrationForm() {
-  // Step 1: Define state variables
+  // State for form fields
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  // Step 2: Handle form submission
+  // State for errors
+  const [errors, setErrors] = useState({});
+
   const handleSubmit = (e) => {
     e.preventDefault(); // Prevent default form submission
-    // Basic validation: ensure no fields are empty
-    if (!username || !email || !password) {
-      alert("All fields are required.");
-      return;
+
+    // Clear previous errors
+    setErrors({});
+
+    // Step 1: Validation logic
+    const newErrors = {};
+    if (!username) {
+      newErrors.username = "Username is required.";
     }
-    console.log("Form submitted with:", { username, email, password });
+    if (!email) {
+      newErrors.email = "Email is required.";
+    }
+    if (!password) {
+      newErrors.password = "Password is required.";
+    }
+
+    // Step 2: Set errors if any
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return; // Stop form submission
+    }
+
+    // Step 3: Submit the form (if no errors)
+    console.log("Form submitted successfully!", { username, email, password });
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      {/* Step 3: Controlled input for username */}
+      {/* Username Input */}
       <label>
         Username:
         <input
           type="text"
-          value={username} // Controlled input
-          onChange={(e) => setUsername(e.target.value)} // Update state
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
         />
       </label>
+      {errors.username && <p style={{ color: "red" }}>{errors.username}</p>}
       <br />
 
-      {/* Controlled input for email */}
+      {/* Email Input */}
       <label>
         Email:
         <input
           type="email"
-          value={email} // Controlled input
-          onChange={(e) => setEmail(e.target.value)} // Update state
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
       </label>
+      {errors.email && <p style={{ color: "red" }}>{errors.email}</p>}
       <br />
 
-      {/* Controlled input for password */}
+      {/* Password Input */}
       <label>
         Password:
         <input
           type="password"
-          value={password} // Controlled input
-          onChange={(e) => setPassword(e.target.value)} // Update state
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
       </label>
+      {errors.password && <p style={{ color: "red" }}>{errors.password}</p>}
       <br />
 
-      {/* Submit button */}
+      {/* Submit Button */}
       <button type="submit">Register</button>
     </form>
   );
