@@ -1,32 +1,21 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
+import About from "./components/About";
 import Profile from "./components/Profile";
-import Post from "./components/Post";
-import ProtectedRoute from "./components/ProtectedRoute";
 import NotFound from "./components/NotFound";
+import BlogPost from "./components/BlogPost";
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = React.useState(false);
-
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route
-          path="profile"
-          element={
-            <ProtectedRoute isAuthenticated={isAuthenticated}>
-              <Profile />
-            </ProtectedRoute>
-          }
-        />
-        <Route path="post/:postId" element={<Post />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/profile/*" element={<Profile />} />
+        <Route path="/blog/:id" element={<BlogPost />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-      <button onClick={() => setIsAuthenticated(!isAuthenticated)}>
-        {isAuthenticated ? "Logout" : "Login"}
-      </button>
     </Router>
   );
 }
