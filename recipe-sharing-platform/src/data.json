@@ -3,36 +3,88 @@
     "id": 1,
     "title": "Spaghetti Carbonara",
     "summary": "A classic Italian pasta dish with eggs, cheese, bacon, and black pepper.",
-    "image": "https://via.placeholder.com/150"
+    "image": "https://via.placeholder.com/150",
+    "ingredients": [
+      "200g Spaghetti",
+      "100g Bacon",
+      "2 Eggs",
+      "50g Parmesan Cheese",
+      "Black Pepper"
+    ],
+    "instructions": "Cook spaghetti. Fry bacon until crispy. Beat eggs and mix with grated Parmesan cheese. Combine hot spaghetti with egg mixture and bacon, stirring quickly to create a creamy sauce. Season with black pepper and serve immediately."
   },
   {
     "id": 2,
     "title": "Chicken Tikka Masala",
-    "summary": "Chunks of grilled chicken (tikka) cooked in a smooth buttery & creamy tomato based gravy.",
-    "image": "https://via.placeholder.com/150"
+    "summary": "Chunks of grilled chicken (tikka) cooked in a smooth buttery & creamy tomato-based gravy.",
+    "image": "https://via.placeholder.com/150",
+    "ingredients": [
+      "500g Chicken",
+      "200ml Yogurt",
+      "1 tsp Garam Masala",
+      "2 Onions",
+      "200ml Tomato Puree",
+      "100ml Heavy Cream"
+    ],
+    "instructions": "Marinate chicken in yogurt and spices. Grill the chicken until slightly charred. Sauté onions, then add spices and tomato puree. Simmer the sauce and mix in grilled chicken. Stir in heavy cream and cook until thickened. Serve hot."
   },
   {
     "id": 3,
     "title": "Beef Stroganoff",
     "summary": "A Russian dish of sautéed beef served in a sauce with sour cream.",
-    "image": "https://via.placeholder.com/150"
+    "image": "https://via.placeholder.com/150",
+    "ingredients": [
+      "500g Beef",
+      "200g Mushrooms",
+      "1 Onion",
+      "200ml Sour Cream",
+      "2 tbsp Flour",
+      "2 tbsp Butter"
+    ],
+    "instructions": "Slice beef into thin strips. Sauté onions and mushrooms in butter. Remove and brown the beef. Sprinkle flour over the beef and mix. Return onions and mushrooms, then add sour cream. Simmer gently until sauce thickens. Serve over rice or noodles."
   },
   {
     "id": 4,
     "title": "Vegetable Stir-Fry",
     "summary": "A quick and healthy mix of fresh vegetables sautéed in a flavorful sauce.",
-    "image": "https://via.placeholder.com/150"
+    "image": "https://via.placeholder.com/150",
+    "ingredients": [
+      "1 Broccoli Head",
+      "1 Red Bell Pepper",
+      "1 Carrot",
+      "100g Snap Peas",
+      "2 tbsp Soy Sauce",
+      "1 tbsp Sesame Oil"
+    ],
+    "instructions": "Chop vegetables into bite-sized pieces. Heat sesame oil in a wok or skillet. Stir-fry vegetables over high heat for 5-7 minutes. Add soy sauce and stir to coat evenly. Cook for an additional minute and serve hot."
   },
   {
     "id": 5,
     "title": "Shrimp Scampi",
     "summary": "Garlic butter shrimp served over a bed of linguine pasta.",
-    "image": "https://via.placeholder.com/150"
+    "image": "https://via.placeholder.com/150",
+    "ingredients": [
+      "200g Linguine",
+      "300g Shrimp",
+      "3 Garlic Cloves",
+      "50g Butter",
+      "1 Lemon",
+      "Parsley"
+    ],
+    "instructions": "Cook linguine until al dente. Sauté garlic in butter. Add shrimp and cook until pink. Squeeze lemon juice over shrimp and mix in parsley. Toss cooked linguine with shrimp and sauce. Serve with extra parsley garnish."
   },
   {
     "id": 6,
     "title": "Margherita Pizza",
     "summary": "A simple Italian pizza with fresh tomatoes, mozzarella, and basil.",
-    "image": "https://via.placeholder.com/150"
+    "image": "https://via.placeholder.com/150",
+    "ingredients": [
+      "1 Pizza Dough",
+      "100g Mozzarella Cheese",
+      "3 Tomatoes",
+      "Fresh Basil Leaves",
+      "2 tbsp Olive Oil"
+    ],
+    "instructions": "Roll out pizza dough and place on a baking sheet. Spread olive oil and sliced tomatoes over the dough. Add shredded mozzarella and bake at 200°C for 12-15 minutes. Top with fresh basil leaves before serving."
   }
 ]
