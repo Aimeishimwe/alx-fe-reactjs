@@ -13,6 +13,15 @@ const HomePage = () => {
       <h1 className="text-3xl font-bold mb-6 text-center">
         Recipe Sharing Platform
       </h1>
+      {/* Link to AddRecipeForm */}
+      <div className="text-center mb-6">
+        <Link
+          to="/add-recipe"
+          className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+        >
+          Add New Recipe
+        </Link>
+      </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {recipes.map((recipe) => (
           <Link to={`/recipe/${recipe.id}`} key={recipe.id}>
