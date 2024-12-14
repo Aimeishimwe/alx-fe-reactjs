@@ -2,62 +2,54 @@ import React, { useState } from "react";
 import { fetchUserData } from "../services/githubService";
 
 const Search = () => {
-  const [username, setUsername] = useState(""); // State for input value
-  const [userData, setUserData] = useState(null); // State for fetched user data
-  const [loading, setLoading] = useState(false); // State for loading status
-  const [error, setError] = useState(null); // State for error message
+  const [username, setUsername] = useState("");
+  const [userData, setUserData] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const handleSearch = async (e) => {
-    e.preventDefault(); // Prevent default form submission behavior
+    e.preventDefault();
     setLoading(true);
-    setError(null);
+    setError("");
     setUserData(null);
 
     try {
-      const data = await fetchUserData(username); // Call service to fetch user data
+      const data = await fetchUserData(username);
       setUserData(data);
     } catch (err) {
-      setError(err.message || "Looks like we can't find the user");
+      setError("Looks like we can’t find the user");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="max-w-lg mx-auto p-4">
-      <form onSubmit={handleSearch} className="mb-4">
+    <div className="search-container">
+      <form onSubmit={handleSearch} className="search-form">
         <input
           type="text"
-          placeholder="Enter GitHub username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-          className="w-full p-2 border rounded"
+          placeholder="Enter GitHub username"
+          className="search-input"
         />
-        <button
-          type="submit"
-          className="mt-2 w-full bg-blue-500 text-white py-2 rounded"
-        >
+        <button type="submit" className="search-button">
           Search
         </button>
       </form>
 
       {loading && <p>Loading...</p>}
-      {error && <p className="text-red-500">{error}</p>}
+      {error && <p>{error}</p>}
       {userData && (
-        <div className="p-4 border rounded">
+        <div className="user-info">
           <img
             src={userData.avatar_url}
-            alt="User Avatar"
-            className="w-20 h-20 rounded-full"
+            alt={userData.login}
+            className="avatar"
           />
-          <h2 className="text-xl font-bold mt-2">{userData.name}</h2>
-          <a
-            href={userData.html_url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-500"
-          >
-            View Profile
+          <p>Name: {userData.name || "N/A"}</p>
+          <a href={userData.html_url} target="_blank" rel="noopener noreferrer">
+            Visit GitHub Profile
           </a>
         </div>
       )}
