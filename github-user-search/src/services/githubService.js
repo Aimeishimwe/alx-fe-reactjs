@@ -1,43 +1,35 @@
 import axios from "axios";
 
-const BASE_URL = "https://api.github.com";
+const BASE_URL = "https://api.github.com/search/users?q";
 
 // Function to fetch advanced user data
-export const fetchAdvancedUsers = async (query) => {
+export const fetchAdvancedUsers = async ({
+  username = "",
+  location = "",
+  minRepos = "",
+}) => {
   try {
-    const response = await axios.get(`${BASE_URL}/search/users`, {
-      params: {
-        q: query, // Query string for advanced search
-      },
-    });
+    // Construct the query string based on provided parameters
+    let query = "";
+    if (username) query += `${username} in:login`;
+    if (location) query += ` location:${location}`;
+    if (minRepos) query += ` repos:>=${minRepos}`;
 
-    // Extract only the relevant user details for display
-    const users = response.data.items.map(async (user) => {
-      const userDetails = await fetchUserDetails(user.url); // Fetch additional user details
-      return {
-        id: userDetails.id,
-        login: userDetails.login,
-        avatar_url: userDetails.avatar_url,
-        location: userDetails.location || "Not specified",
-        public_repos: userDetails.public_repos || 0,
-        html_url: userDetails.html_url,
-      };
-    });
+    // Ensure the full URL includes the BASE_URL and query
+    const fullUrl = `${BASE_URL}${query.trim() ? `&q=${query.trim()}` : ""}`;
 
-    return Promise.all(users); // Return all user details
+    // Make the API request with the constructed query
+    const response = await axios.get(fullUrl);
+
+    // Return user items with relevant data
+    return response.data.items.map((user) => ({
+      id: user.id,
+      login: user.login,
+      avatar_url: user.avatar_url,
+      html_url: user.html_url,
+    }));
   } catch (error) {
     console.error("Error fetching advanced users:", error);
-    throw error;
-  }
-};
-
-// Function to fetch user details (e.g., location, public repos)
-const fetchUserDetails = async (userUrl) => {
-  try {
-    const response = await axios.get(userUrl); // Get detailed user data
-    return response.data;
-  } catch (error) {
-    console.error("Error fetching user details:", error);
     throw error;
   }
 };
