@@ -21,7 +21,7 @@ const Search = () => {
         const user = await fetchUserData(username);
         setResults(user ? [user] : []);
         if (!user) {
-          setError("Looks like we can't find the user");
+          setError("Looks like we cant find the user");
         }
       } else {
         // Advanced search
@@ -31,7 +31,7 @@ const Search = () => {
           minRepos,
         });
         if (users.length === 0) {
-          setError("Looks like we can't find the user");
+          setError("Looks like we cant find the user");
         } else {
           setResults(users);
         }
