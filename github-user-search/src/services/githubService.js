@@ -9,19 +9,14 @@ export const fetchAdvancedUsers = async ({
   minRepos = "",
 }) => {
   try {
-    // Construct the query string based on provided parameters
     let query = "";
     if (username) query += `${username} in:login`;
     if (location) query += ` location:${location}`;
     if (minRepos) query += ` repos:>=${minRepos}`;
 
-    // Ensure the full URL includes the BASE_URL and query
     const fullUrl = `${BASE_URL}${query.trim() ? `&q=${query.trim()}` : ""}`;
-
-    // Make the API request with the constructed query
     const response = await axios.get(fullUrl);
 
-    // Return user items with relevant data
     return response.data.items.map((user) => ({
       id: user.id,
       login: user.login,
@@ -30,6 +25,21 @@ export const fetchAdvancedUsers = async ({
     }));
   } catch (error) {
     console.error("Error fetching advanced users:", error);
+    throw error;
+  }
+};
+
+// Function to fetch a single user's data
+export const fetchUserData = async (username) => {
+  try {
+    const response = await axios.get(
+      `https://api.github.com/users/${username}`
+    );
+    const { id, login, avatar_url, html_url, location, public_repos } =
+      response.data;
+    return { id, login, avatar_url, html_url, location, public_repos };
+  } catch (error) {
+    console.error("Error fetching user data:", error);
     throw error;
   }
 };

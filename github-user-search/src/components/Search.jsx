@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { fetchAdvancedUsers } from "../services/githubService";
+import { fetchAdvancedUsers, fetchUserData } from "../services/githubService";
 
 const Search = () => {
   const [username, setUsername] = useState("");
@@ -16,16 +16,25 @@ const Search = () => {
     setResults([]);
 
     try {
-      // Create the query string based on user inputs
-      const query = `${username ? `user:${username}` : ""}${
-        location ? `+location:${location}` : ""
-      }${minRepos ? `+repos:>=${minRepos}` : ""}`;
-      const data = await fetchAdvancedUsers(query);
-
-      if (data.length === 0) {
-        setError("Looks like we cant find the user");
+      if (!location && !minRepos) {
+        // Basic user search
+        const user = await fetchUserData(username);
+        setResults(user ? [user] : []);
+        if (!user) {
+          setError("Looks like we can't find the user");
+        }
       } else {
-        setResults(data);
+        // Advanced search
+        const users = await fetchAdvancedUsers({
+          username,
+          location,
+          minRepos,
+        });
+        if (users.length === 0) {
+          setError("Looks like we can't find the user");
+        } else {
+          setResults(users);
+        }
       }
     } catch (err) {
       setError("An unexpected error occurred. Please try again later.");
@@ -92,7 +101,7 @@ const Search = () => {
               <div>
                 <p className="font-bold">{user.login}</p>
                 <p>Location: {user.location || "Not specified"}</p>
-                <p>Repos: {user.public_repos}</p>
+                <p>Repos: {user.public_repos || "N/A"}</p>
                 <a
                   href={user.html_url}
                   target="_blank"
