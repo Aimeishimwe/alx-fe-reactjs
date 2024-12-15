@@ -55,7 +55,7 @@ const Search = () => {
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            placeholder="Username (optional)"
+            placeholder="Username"
             className="border rounded w-full py-2 px-3"
           />
         </div>
